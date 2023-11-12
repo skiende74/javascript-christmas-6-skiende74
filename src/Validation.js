@@ -21,7 +21,7 @@ const Validation = {
       throw new Error(Errors.ORDER_FORMAT);
   },
 
-  validateOrderNotInMenu(order) {
+  validateOrderMustInMenu(order) {
     const menus = Object.values(Conditions.MENUS_PRICES).flatMap((el) =>
       Object.keys(el),
     );
@@ -34,19 +34,21 @@ const Validation = {
       throw new Error(Errors.ORDER_FORMAT);
   },
 
-  validateOrderRedundant(order) {
+  validateOrderNoRedundant(order) {
     const menus = order.split(',').map((menu) => menu.split('-')[0]);
     if (menus.length !== new Set(menus).size)
       throw new Error(Errors.ORDER_FORMAT);
   },
 
-  validateOrderOnlyBeverage(order) {
+  validateOrderNoOnlyBeverage(order) {
     const beverages = Object.keys(Conditions.MENUS_PRICES.beverages);
     if (
       order.split(',').every((menu) => beverages.includes(menu.split('-')[0]))
     )
       throw new Error(Errors.ORDER_FORMAT);
   },
+
+  validateOrderNotOverTwenty(order) {},
 };
 
 export default Validation;

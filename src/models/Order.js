@@ -10,10 +10,10 @@ class Order {
 
   static #validate(order) {
     Validation.validateOrderFormat(order);
-    Validation.validateOrderNotInMenu(order);
+    Validation.validateOrderMustInMenu(order);
     Validation.validateOrderCountOneOrMore(order);
-    Validation.validateOrderRedundant(order);
-    Validation.validateOrderOnlyBeverage(order);
+    Validation.validateOrderNoRedundant(order);
+    Validation.validateOrderNoOnlyBeverage(order);
   }
 }
 
