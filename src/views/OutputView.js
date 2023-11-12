@@ -36,16 +36,19 @@ const OutputView = {
     }
   },
 
-  printBenfitPrice() {
+  printBenfitPrice(benefitPrice) {
     Console.print(Messages.HEADERS.TOTAL_BENEFIT_PRICE);
+    Console.print(`-${this.format(benefitPrice)}원`);
   },
 
-  printExpectedPurchase() {
+  printExpectedPurchase(price) {
     Console.print(Messages.HEADERS.EXPECTED_PURCHASE_AFTER_DISCOUNT);
+    Console.print(`${this.format(price)}원`);
   },
 
-  printEventBadge() {
+  printEventBadge(badge) {
     Console.print(Messages.HEADERS.EVENT_BADGE);
+    Console.print(badge);
   },
 
   print(message) {

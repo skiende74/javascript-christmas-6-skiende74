@@ -5,6 +5,7 @@ import InputView from './views/InputView.js';
 import OutputView from './views/OutputView.js';
 import Discounter from './models/Discounter.js';
 import PresentEvent from './models/PresentEvent.js';
+import BenefitList from './models/BenefitList.js';
 
 class App {
   async run() {
@@ -21,9 +22,12 @@ class App {
     OutputView.printPresentEvent(isPresentGiven);
 
     OutputView.printBenfitList(discounts, isPresentGiven);
-    OutputView.printBenfitPrice();
-    OutputView.printExpectedPurchase();
-    OutputView.printEventBadge();
+    const aBenefitList = new BenefitList(discounts, isPresentGiven);
+    OutputView.printBenfitPrice(aBenefitList.getTotalBenefit());
+    OutputView.printExpectedPurchase(
+      anOrder.getTotalPrice() - aBenefitList.getTotalDiscountPrice(),
+    );
+    OutputView.printEventBadge(aBenefitList.getBadge());
     OutputView.printSplitter();
   }
 
