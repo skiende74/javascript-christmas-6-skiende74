@@ -10,7 +10,14 @@ class Discounter {
   #special = 0;
 
   constructor(date) {
-    this.#dday = (date <= 25) * (date + 9) * Conditions.DISCOUNTS.dday;
+    this.#dday = date <= 25 ? (date + 9) * Conditions.DISCOUNTS.dday : 0;
+    this.#weekday =
+      Discounter.#getDayOfWeek(date) <= 4 ? Conditions.DISCOUNTS.weekday : 0;
+    this.#weekend =
+      Discounter.#getDayOfWeek(date) >= 5 ? Conditions.DISCOUNTS.weekend : 0;
+    this.#special = Conditions.SPECIAL_DATES.includes(date)
+      ? Conditions.DISCOUNTS.special
+      : 0;
   }
 
   getDiscounts() {
@@ -27,7 +34,7 @@ class Discounter {
     return sum(Object.values(this.getDiscounts()));
   }
 
-  #getDayOfWeek(date) {
+  static #getDayOfWeek(date) {
     return new Date(`2023-12-${date}`).getDay();
   }
 }
