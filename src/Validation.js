@@ -12,9 +12,9 @@ const Validation = {
         .split(',')
         .every(
           (menu) =>
-            menu.contains('-') &&
-            !Number.isInteger(menu.split('-')[0]) &&
-            Number.isInteger(menu.split('-')[1]),
+            menu.includes('-') &&
+            !Number.isInteger(Number(menu.split('-')[0])) &&
+            Number.isInteger(Number(menu.split('-')[1])),
         )
     )
       throw new Error(Errors.ORDER_FORMAT);
