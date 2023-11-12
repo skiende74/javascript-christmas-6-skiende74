@@ -2,7 +2,7 @@ import Order from '../src/models/Order';
 
 // eslint-disable-next-line max-lines-per-function
 describe('주문', () => {
-  test.each(['샴페인-1', '샴페인-1,제로콜라-2,바비큐립-1'])(
+  test.each(['티본스테이크-1', '샴페인-1,제로콜라-2,바비큐립-1'])(
     '올바른 입력',
     (order) => {
       expect(() => new Order(order)).not.toThrow();

@@ -13,6 +13,7 @@ class Order {
     Validation.validateOrderNotInMenu(order);
     Validation.validateOrderCountOneOrMore(order);
     Validation.validateOrderRedundant(order);
+    Validation.validateOrderOnlyBeverage(order);
   }
 }
 

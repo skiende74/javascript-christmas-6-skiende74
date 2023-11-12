@@ -39,6 +39,14 @@ const Validation = {
     if (menus.length !== new Set(menus).size)
       throw new Error(Errors.ORDER_FORMAT);
   },
+
+  validateOrderOnlyBeverage(order) {
+    const beverages = Object.keys(Conditions.MENUS_PRICES.beverages);
+    if (
+      order.split(',').every((menu) => beverages.includes(menu.split('-')[0]))
+    )
+      throw new Error(Errors.ORDER_FORMAT);
+  },
 };
 
 export default Validation;
