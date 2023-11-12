@@ -9,12 +9,13 @@ class BenefitList {
   }
 
   getTotalBenefit() {
-    const sum = (arr) => arr.reduce((acc, value) => acc + value, 0);
-
-    const discountPrice = sum(Object.values(this.#discounts));
-    const givenPrice = this.#calcGivenPrice();
-    return discountPrice + givenPrice;
+    return this.#calcDiscountPrice() + this.#calcGivenPrice();
   }
+
+  getTotalDiscountPrice() {
+    return this.#calcDiscountPrice();
+  }
+
   getBadge() {
     const total = this.getTotalBenefit();
     if (total >= 20000) return '산타';
@@ -25,6 +26,12 @@ class BenefitList {
 
   #calcGivenPrice() {
     return this.#isGivenPresent ? Conditions.MENUS_PRICES.beverages.샴페인 : 0;
+  }
+
+  #calcDiscountPrice() {
+    const sum = (arr) => arr.reduce((acc, value) => acc + value, 0);
+
+    return sum(Object.values(this.#discounts));
   }
 }
 
