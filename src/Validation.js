@@ -48,7 +48,11 @@ const Validation = {
       throw new Error(Errors.ORDER_FORMAT);
   },
 
-  validateOrderNotOverTwenty(order) {},
+  validateOrderNotOverTwenty(order) {
+    const sum = (arr) => arr.reduce((acc, value) => acc + value, 0);
+    if (sum(order.split(',').map((o) => Number(o.split('-')[1]))) > 20)
+      throw new Error(Errors.ORDER_FORMAT);
+  },
 };
 
 export default Validation;

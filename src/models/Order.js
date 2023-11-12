@@ -14,6 +14,7 @@ class Order {
     Validation.validateOrderCountOneOrMore(order);
     Validation.validateOrderNoRedundant(order);
     Validation.validateOrderNoOnlyBeverage(order);
+    Validation.validateOrderNotOverTwenty(order);
   }
 }
 
