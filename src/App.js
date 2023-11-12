@@ -22,6 +22,9 @@ class App {
 
     OutputView.printSplitter();
     OutputView.printBenfitList(discounts, isPresentGiven);
+    OutputView.printBenfitPrice();
+    OutputView.printExpectedPurchase();
+    OutputView.printEventBadge();
   }
 
   async readVisitDate() {

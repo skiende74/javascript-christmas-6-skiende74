@@ -36,6 +36,9 @@ const OutputView = {
   printExpectedPurchase() {
     Console.print(Messages.HEADERS.EXPECTED_PURCHASE_AFTER_DISCOUNT);
   },
+  printEventBadge() {
+    Console.print(Messages.HEADERS.EVENT_BADGE);
+  },
 
   print(message) {
     Console.print(message);
