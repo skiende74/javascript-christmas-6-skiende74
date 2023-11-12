@@ -1,4 +1,4 @@
-import Conditions from '../constants/Conditions';
+import Conditions from '../constants/Conditions.js';
 class BenefitList {
   #discounts;
   #isGivenPresent;

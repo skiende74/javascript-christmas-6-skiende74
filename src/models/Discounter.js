@@ -1,30 +1,21 @@
 import Conditions from '../constants/Conditions.js';
 
 class Discounter {
-  #dday = 0;
+  #discounts = { dday: 0, weekday: 0, weekend: 0, special: 0 };
+  #aDate;
+  #anOrder;
 
-  #weekday = 0;
-
-  #weekend = 0;
-
-  #special = 0;
-
-  constructor(aDate) {
-    this.#dday = aDate.isDdayApplicable()
-      ? (aDate.getDay() + 9) * Conditions.DISCOUNTS.dday
-      : 0;
-    this.#weekday = aDate.isWeekday() ? Conditions.DISCOUNTS.weekday : 0;
-    this.#weekend = aDate.isWeekend() ? Conditions.DISCOUNTS.weekend : 0;
-    this.#special = aDate.isSpecialDay() ? Conditions.DISCOUNTS.special : 0;
+  constructor(aDate, anOrder) {
+    this.#aDate = aDate;
+    this.#anOrder = anOrder;
+    this.#discounts.dday = this.#getDdayDiscount();
+    this.#discounts.weekday = this.#getWeekdayDiscount();
+    this.#discounts.weekend = this.#getWeekendDiscount();
+    this.#discounts.special = this.#getSpecialDiscount();
   }
 
   getDiscounts() {
-    return {
-      dday: this.#dday,
-      weekday: this.#weekday,
-      weekend: this.#weekend,
-      special: this.#special,
-    };
+    return this.#discounts;
   }
 
   getTotalDiscount() {
@@ -32,8 +23,23 @@ class Discounter {
     return sum(Object.values(this.getDiscounts()));
   }
 
-  static #getDayOfWeek(date) {
-    return new Date(`2023-12-${date}`).getDay();
+  #getDdayDiscount() {
+    if (!this.#aDate.isDdayApplicable()) return 0;
+    return (this.#aDate.getDay() + 9) * Conditions.DISCOUNTS.dday;
+  }
+
+  #getWeekdayDiscount() {
+    if (!this.#aDate.isWeekday()) return 0;
+    return this.#anOrder.getNumberOfDesserts() * Conditions.DISCOUNTS.weekday;
+  }
+
+  #getWeekendDiscount() {
+    if (!this.#aDate.isWeekend()) return 0;
+    return this.#anOrder.getNumberOfMain() * Conditions.DISCOUNTS.weekend;
+  }
+
+  #getSpecialDiscount() {
+    return this.#aDate.isSpecialDay() ? Conditions.DISCOUNTS.special : 0;
   }
 }
 

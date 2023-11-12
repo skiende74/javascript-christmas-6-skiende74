@@ -1,6 +1,5 @@
 import Validation from '../Validation.js';
 import Conditions from '../constants/Conditions.js';
-import OutputView from '../views/OutputView.js';
 
 class Order {
   #order;
@@ -49,6 +48,21 @@ class Order {
 
   getOrder() {
     return this.#order;
+  }
+
+  getNumberOfDesserts() {
+    const desserts = Object.keys(Conditions.MENUS_PRICES.desserts);
+    return Object.entries(this.#order).reduce(
+      (acc, [menu, count]) => acc + desserts.includes(menu) * count,
+      0,
+    );
+  }
+  getNumberOfMain() {
+    const main = Object.keys(Conditions.MENUS_PRICES.main);
+    return Object.entries(this.#order).reduce(
+      (acc, [menu, count]) => acc + main.includes(menu) * count,
+      0,
+    );
   }
 }
 

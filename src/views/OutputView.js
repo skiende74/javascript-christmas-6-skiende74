@@ -1,6 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import Messages from '../constants/Messages.js';
 import Conditions from '../constants/Conditions.js';
+import BenefitList from '../models/BenefitList.js';
 
 const OutputView = {
   printMenu(order) {
@@ -23,6 +24,10 @@ const OutputView = {
   printBenfitList(discounts, isGiven) {
     Console.print(Messages.HEADERS.BENEFIT_LIST);
 
+    if (new BenefitList(discounts, isGiven).getTotalBenefit() == 0) {
+      Console.print('없음');
+      return;
+    }
     Object.entries(discounts)
       .filter(([menu, discount]) => discount > 0)
       .map(([menu, discount]) => {
