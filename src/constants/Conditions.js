@@ -10,6 +10,15 @@ const Conditions = Object.freeze({
     desserts: { 초코케이크: 15000, 아이스크림: 5000 },
     beverages: { 제로콜라: 3000, 레드와인: 60000, 샴페인: 25000 },
   },
+
+  DISCOUNTS: {
+    dday: 100,
+    weekday: 2023,
+    weekend: 2023,
+    special: 1000,
+  },
+
+  SPECIAL_DATES: [3, 10, 17, 24, 25, 31],
 });
 
 export default Conditions;
