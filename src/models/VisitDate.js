@@ -12,3 +12,5 @@ class VisitDate {
     Validation.validateVisitDate(date);
   }
 }
+
+export default VisitDate;
