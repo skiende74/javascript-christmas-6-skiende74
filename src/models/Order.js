@@ -46,6 +46,10 @@ class Order {
       ),
     );
   }
+
+  getOrder() {
+    return this.#order;
+  }
 }
 
 export default Order;

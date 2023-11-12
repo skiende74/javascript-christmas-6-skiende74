@@ -13,7 +13,7 @@ class App {
     const aVisitDate = await this.readVisitDate();
     const anOrder = await this.readOrder();
 
-    OutputView.printMenu();
+    OutputView.printMenu(anOrder.getOrder());
     OutputView.printPriceBeforeDiscount();
 
     const discounts = new Discounter(aVisitDate).getDiscounts();
