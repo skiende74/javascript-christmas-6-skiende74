@@ -6,37 +6,23 @@ import OutputView from './views/OutputView.js';
 
 class App {
   async run() {
-    // const visitDate = await this.readVisitDate();
-    // const order = await this.readOrder();
+    const visitDate = await this.readVisitDate();
+    const order = await this.readOrder();
   }
 
   async readVisitDate() {
-    while (true) {
-      try {
-        const date = await InputView.readDate();
-        return new VisitDate(date);
-      } catch (e) {
-        OutputView.print(e.message);
-      }
-    }
+    return this.robustInput(InputView.readDate, VisitDate);
   }
 
   async readOrder() {
-    while (true) {
-      try {
-        const order = await InputView.readOrder();
-        return new Order(order);
-      } catch (e) {
-        OutputView.print(e.message);
-      }
-    }
+    return this.robustInput(InputView.readOrder, Order);
   }
 
-  async robustInput(readline, parse, Object) {
+  async robustInput(readline, Object) {
     while (true) {
       try {
         const input = await readline();
-        return new Object(parse(input));
+        return new Object(input);
       } catch (e) {
         OutputView.print(e.message);
       }
