@@ -1,12 +1,12 @@
-import Validation from '../Validation';
+import Validation from '../Validation.js';
 import Conditions from '../constants/Conditions.js';
 
 class VisitDate {
   #date;
 
   constructor(date) {
-    this.#date = date;
-    VisitDate.#validate(date);
+    this.#date = Number(date);
+    this.#validate();
   }
 
   isDdayApplicable() {
@@ -33,8 +33,8 @@ class VisitDate {
     return new Date(`2023-12-${this.#date}`).getDay();
   }
 
-  static #validate(date) {
-    Validation.validateVisitDate(date);
+  #validate() {
+    Validation.validateVisitDate(this.#date);
   }
 }
 
