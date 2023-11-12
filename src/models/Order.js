@@ -12,6 +12,7 @@ class Order {
     Validation.validateOrderFormat(order);
     Validation.validateOrderNotInMenu(order);
     Validation.validateOrderCountOneOrMore(order);
+    Validation.validateOrderRedundant(order);
   }
 }
 

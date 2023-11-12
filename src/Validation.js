@@ -36,6 +36,12 @@ const Validation = {
     if (!order.split(',').every((menu) => menu.split('-')[1] >= 1))
       throw new Error(Errors.ORDER_FORMAT);
   },
+
+  validateOrderRedundant(order) {
+    const menus = order.split(',').map((menu) => menu.split('-')[0]);
+    if (menus.length !== new Set(menus).size)
+      throw new Error(Errors.ORDER_FORMAT);
+  },
 };
 
 export default Validation;
