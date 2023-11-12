@@ -19,14 +19,14 @@ const OutputView = {
     const format = (discount) =>
       new Intl.NumberFormat('ko-KR').format(discount);
 
-    Object.entries(discounts).map(([menu, discount]) => {
-      Console.print(`${Messages.DISCOUNTS[menu]}: -${format(discount)}원`);
-    });
+    Object.entries(discounts)
+      .filter(([menu, discount]) => discount > 0)
+      .map(([menu, discount]) => {
+        Console.print(`${Messages.DISCOUNTS[menu]}: -${format(discount)}원`);
+      });
 
     if (isGiven) {
-      const prize = Conditions.PRESENT_EVENT_PRIZE;
-      const prizePrice = Conditions.MENUS_PRICES[prize];
-      Console.print(`${Messages.PRESENT_EVENT}: -${format(prizePrice)}원`);
+      Console.print(`${Messages.PRESENT_EVENT}: -${format(25000)}원`);
     }
   },
 
