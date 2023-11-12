@@ -5,11 +5,12 @@ class Order {
 
   constructor(order) {
     this.#order = order;
-    this.#validate(order);
+    Order.#validate(order);
   }
 
-  #validate(order) {
+  static #validate(order) {
     Validation.validateOrderFormat(order);
+    Validation.validateOrderNotInMenu(order);
   }
 }
 
