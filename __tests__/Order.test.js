@@ -16,4 +16,11 @@ describe('주문', () => {
   test.each(['샴페인-0'])('잘못된 갯수 입력', (order) => {
     expect(() => new Order(order)).toThrow();
   });
+
+  test.each(['샴페인-1,샴페인-2', '샴페인-1,레드와인-2,샴페인-2'])(
+    '중복메뉴 입력',
+    (order) => {
+      expect(() => new Order(order)).toThrow();
+    },
+  );
 });
