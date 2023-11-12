@@ -8,9 +8,9 @@ const Validation = {
       throw new Error(Errors.VISIT_DATE_RANGE);
   },
 
-  validateOrderFormat(order) {
+  validateOrderFormat(orderStr) {
     if (
-      !order
+      !orderStr
         .split(',')
         .every(
           (menu) =>

@@ -11,19 +11,24 @@ class App {
   async run() {
     OutputView.printSplitter();
     OutputView.printGreeting();
+
+    // 할인 전
     const aVisitDate = await this.readVisitDate();
     const anOrder = await this.readOrder();
-
     OutputView.printMenu(anOrder.getOrder());
     OutputView.printPriceBeforeDiscount(anOrder.getTotalPrice());
 
+    // 혜택내역
     const discounts = new Discounter(aVisitDate, anOrder).getDiscounts();
     const isPresentGiven = new PresentEvent(anOrder.getTotalPrice()).isGiven();
     OutputView.printPresentEvent(isPresentGiven);
-
     OutputView.printBenfitList(discounts, isPresentGiven);
+
+    // 총혜택
     const aBenefitList = new BenefitList(discounts, isPresentGiven);
     OutputView.printBenfitPrice(aBenefitList.getTotalBenefit());
+
+    // 이후
     OutputView.printExpectedPurchase(
       anOrder.getTotalPrice() - aBenefitList.getTotalDiscountPrice(),
     );
