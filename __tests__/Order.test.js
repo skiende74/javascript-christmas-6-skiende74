@@ -7,4 +7,7 @@ describe('주문', () => {
       expect(() => new Order(order)).not.toThrow();
     },
   );
+  test.each(['감자-1', '시저샐러드-2,튤립-1'])('올바른 입력', (order) => {
+    expect(() => new Order(order).toThrow());
+  });
 });
