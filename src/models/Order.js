@@ -1,11 +1,12 @@
 import Validation from '../Validation.js';
+import Conditions from '../constants/Conditions.js';
 
 class Order {
   #order;
 
-  constructor(order) {
-    this.#order = order;
-    Order.#validate(order);
+  constructor(orderStr) {
+    Order.#validate(orderStr);
+    this.#order = this.#parse(orderStr);
   }
 
   static #validate(order) {
@@ -15,6 +16,16 @@ class Order {
     Validation.validateOrderNoRedundant(order);
     Validation.validateOrderNoOnlyBeverage(order);
     Validation.validateOrderNotOverTwenty(order);
+  }
+
+  #parse(orderStr) {
+    return orderStr
+      .split(',')
+      .map((o) => ({ [o.split('-')[0]]: Number(o.split('-')[1]) }));
+  }
+
+  getPrice() {
+    Object.values(this.#order).Conditions.MENUS_PRICES;
   }
 }
 
