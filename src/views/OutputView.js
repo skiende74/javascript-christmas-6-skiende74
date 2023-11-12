@@ -43,7 +43,9 @@ const OutputView = {
 
   printBenfitPrice(benefitPrice) {
     Console.print(Messages.HEADERS.TOTAL_BENEFIT_PRICE);
-    Console.print(`-${this.format(benefitPrice)}원`);
+    Console.print(
+      `${benefitPrice > 0 ? '-' + this.format(benefitPrice) : 0}원`,
+    );
   },
 
   printExpectedPurchase(price) {
