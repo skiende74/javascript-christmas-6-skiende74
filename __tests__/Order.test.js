@@ -27,4 +27,11 @@ describe('주문', () => {
   test.each(['샴페인-1,레드와인-2', '샴페인-4'])('음료만 주문불가', (order) => {
     expect(() => new Order(order)).toThrow('[ERROR]');
   });
+
+  test.each(['티본스테이크-21', '시저샐러드-5,레드와인-16'])(
+    '총 주문수 20초과',
+    (order) => {
+      expect(() => new Order(order)).toThrow('[ERROR]');
+    },
+  );
 });
