@@ -38,7 +38,7 @@ describe('주문', () => {
   test.each([
     ['티본스테이크-1', 55000],
     ['시저샐러드-1,레드와인-1', 68000],
-  ])('주문금액 계산', (order) => {
-    expect(() => new Order(order).getPrice()).toBe();
+  ])('주문금액 계산', (order, price) => {
+    expect(new Order(order).getTotalPrice()).toBe(price);
   });
 });
