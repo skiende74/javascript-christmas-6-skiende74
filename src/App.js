@@ -17,10 +17,11 @@ class App {
     OutputView.printPriceBeforeDiscount();
 
     const discounts = new Discounter(aVisitDate).getDiscounts();
-    const isPresentEvent = new PresentEvent(anOrder.getTotalPrice()).isGiven();
-    OutputView.printPresentEvent(isPresentEvent);
+    const isPresentGiven = new PresentEvent(anOrder.getTotalPrice()).isGiven();
+    OutputView.printPresentEvent(isPresentGiven);
 
     OutputView.printSplitter();
+    OutputView.printBenfitList(discounts, isPresentGiven);
   }
 
   async readVisitDate() {
