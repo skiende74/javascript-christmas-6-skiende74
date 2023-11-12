@@ -9,15 +9,13 @@ class Discounter {
 
   #special = 0;
 
-  constructor(date) {
-    this.#dday = date <= 25 ? (date + 9) * Conditions.DISCOUNTS.dday : 0;
-    this.#weekday =
-      Discounter.#getDayOfWeek(date) <= 4 ? Conditions.DISCOUNTS.weekday : 0;
-    this.#weekend =
-      Discounter.#getDayOfWeek(date) >= 5 ? Conditions.DISCOUNTS.weekend : 0;
-    this.#special = Conditions.SPECIAL_DATES.includes(date)
-      ? Conditions.DISCOUNTS.special
+  constructor(aDate) {
+    this.#dday = aDate.isDdayApplicable()
+      ? (aDate.getDay() + 9) * Conditions.DISCOUNTS.dday
       : 0;
+    this.#weekday = aDate.isWeekday() ? Conditions.DISCOUNTS.weekday : 0;
+    this.#weekend = aDate.isWeekend() ? Conditions.DISCOUNTS.weekend : 0;
+    this.#special = aDate.isSpecialDay() ? Conditions.DISCOUNTS.special : 0;
   }
 
   getDiscounts() {
