@@ -31,6 +31,11 @@ const Validation = {
     )
       throw new Error(Errors.ORDER_FORMAT);
   },
+
+  validateOrderCountOneOrMore(order) {
+    if (!order.split(',').every((menu) => menu.split('-')[1] >= 1))
+      throw new Error(Errors.ORDER_FORMAT);
+  },
 };
 
 export default Validation;
