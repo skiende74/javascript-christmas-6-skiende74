@@ -22,13 +22,10 @@ const Validation = {
   },
 
   validateOrderNotInMenu(order) {
-    if (
-      !order
-        .split(',')
-        .every((menu) =>
-          Object.keys(Conditions.MENUS_PRICES).includes(menu.split('-')[0]),
-        )
-    )
+    const menus = Object.values(Conditions.MENUS_PRICES).flatMap((el) =>
+      Object.keys(el),
+    );
+    if (!order.split(',').every((menu) => menus.includes(menu.split('-')[0])))
       throw new Error(Errors.ORDER_FORMAT);
   },
 
