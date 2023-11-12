@@ -14,7 +14,7 @@ class App {
     const anOrder = await this.readOrder();
 
     OutputView.printMenu(anOrder.getOrder());
-    OutputView.printPriceBeforeDiscount();
+    OutputView.printPriceBeforeDiscount(anOrder.getTotalPrice());
 
     const discounts = new Discounter(aVisitDate).getDiscounts();
     const isPresentGiven = new PresentEvent(anOrder.getTotalPrice()).isGiven();

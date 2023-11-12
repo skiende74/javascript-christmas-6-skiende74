@@ -10,8 +10,9 @@ const OutputView = {
     );
   },
 
-  printPriceBeforeDiscount() {
+  printPriceBeforeDiscount(price) {
     Console.print(Messages.HEADERS.TOTAL_PRICE_BEFORE_DISCOUNT);
+    Console.print(`${this.format(price)}원`);
   },
 
   printPresentEvent(isGiven) {
