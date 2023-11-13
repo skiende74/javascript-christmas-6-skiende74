@@ -3,6 +3,27 @@ import Messages from '../constants/Messages.js';
 import Conditions from '../constants/Conditions.js';
 import BenefitList from '../models/BenefitList.js';
 
+const Utils = {
+  printDiscountBenefit(discounts) {
+    Object.entries(discounts)
+      .filter(([menu, discount]) => discount > 0)
+      .forEach(([menu, discount]) => {
+        Console.print(
+          `${Messages.DISCOUNTS[menu]}: -${this.format(discount)}원`,
+        );
+      });
+  },
+
+  printPresentBenefitIf(isGiven) {
+    if (isGiven) {
+      Console.print(`${Messages.PRESENT_EVENT}: -${this.format(25000)}원`);
+    }
+  },
+  format(discount) {
+    return new Intl.NumberFormat('ko-KR').format(discount);
+  },
+};
+
 const OutputView = {
   printMenu(order) {
     Console.print(Messages.HEADERS.ORDER_MENU);
@@ -13,7 +34,7 @@ const OutputView = {
 
   printPriceBeforeDiscount(price) {
     Console.print(Messages.HEADERS.TOTAL_PRICE_BEFORE_DISCOUNT);
-    Console.print(`${this.format(price)}원`);
+    Console.print(`${Utils.format(price)}원`);
   },
 
   printPresentEvent(isGiven) {
@@ -23,34 +44,24 @@ const OutputView = {
 
   printBenfitList(discounts, isGiven) {
     Console.print(Messages.HEADERS.BENEFIT_LIST);
-
-    if (new BenefitList(discounts, isGiven).getTotalBenefit() == 0) {
+    if (new BenefitList(discounts, isGiven).getTotalBenefit() === 0) {
       Console.print('없음');
       return;
     }
-    Object.entries(discounts)
-      .filter(([menu, discount]) => discount > 0)
-      .map(([menu, discount]) => {
-        Console.print(
-          `${Messages.DISCOUNTS[menu]}: -${this.format(discount)}원`,
-        );
-      });
-
-    if (isGiven) {
-      Console.print(`${Messages.PRESENT_EVENT}: -${this.format(25000)}원`);
-    }
+    Utils.printDiscountBenefit(discounts);
+    Utils.printPresentBenefitIf(isGiven);
   },
 
   printBenfitPrice(benefitPrice) {
     Console.print(Messages.HEADERS.TOTAL_BENEFIT_PRICE);
     Console.print(
-      `${benefitPrice > 0 ? '-' + this.format(benefitPrice) : 0}원`,
+      `${benefitPrice > 0 ? `-${Utils.format(benefitPrice)}` : 0}원`,
     );
   },
 
   printExpectedPurchase(price) {
     Console.print(Messages.HEADERS.EXPECTED_PURCHASE_AFTER_DISCOUNT);
-    Console.print(`${this.format(price)}원`);
+    Console.print(`${Utils.format(price)}원`);
   },
 
   printEventBadge(badge) {
@@ -69,11 +80,6 @@ const OutputView = {
   printGreeting() {
     Console.print(Messages.GREETING);
   },
-
-  format(discount) {
-    return new Intl.NumberFormat('ko-KR').format(discount);
-  },
-  // ...
 };
 
 export default OutputView;
