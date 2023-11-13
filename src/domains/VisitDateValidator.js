@@ -8,8 +8,12 @@ class VisitDateValidator {
   }
 
   validate() {
-    if (!(Number.isInteger(this.#date) && this.#date <= 31 && this.#date >= 1))
+    if (!(Number.isInteger(this.#date) && this.#isInRange()))
       throw new Error(Errors.VISIT_DATE_RANGE);
+  }
+
+  #isInRange() {
+    return this.#date <= 31 && this.#date >= 1;
   }
 }
 
