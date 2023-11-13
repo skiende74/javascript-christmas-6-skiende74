@@ -6,28 +6,22 @@ import OutputView from './views/OutputView.js';
 import Discounter from './services/Discounter.js';
 import PresentEvent from './services/PresentEvent.js';
 import BenefitList from './services/BenefitList.js';
-import OrderController from './controller/OrderController.js';
+import OrderController from './controllers/OrderController.js';
+import BenefitController from './controllers/BenefitController.js';
 
 class App {
   #aVisitDate;
 
   #anOrder;
 
-  #discounts;
-
-  #isPresentGiven;
-
-  #aBenefitList;
-
   async run() {
     OutputView.printSplitter();
     OutputView.printGreetings();
 
     await this.#readInputs();
-    this.#calculate();
 
-    this.#printOrderDetails();
-    this.#printBenefitDetails();
+    this.#runOrderController();
+    this.#runBenefitController();
 
     OutputView.printSplitter();
   }
@@ -57,34 +51,12 @@ class App {
     }
   }
 
-  #calculate() {
-    this.#discounts = new Discounter(
-      this.#aVisitDate,
-      this.#anOrder,
-    ).getDiscounts();
-    this.#isPresentGiven = new PresentEvent(
-      this.#anOrder.getTotalPrice(),
-    ).isGiven();
-    this.#aBenefitList = new BenefitList(this.#discounts, this.#isPresentGiven);
-  }
-
-  #printOrderDetails() {
+  #runOrderController() {
     new OrderController(this.#anOrder).print();
-    // OutputView.printMenu(this.#anOrder.getOrder());
-    // OutputView.printPriceBeforeDiscount(this.#anOrder.getTotalPrice());
   }
 
-  #printBenefitDetails() {
-    OutputView.printPresentEvent(this.#isPresentGiven);
-    OutputView.printBenefitList(this.#discounts, this.#isPresentGiven);
-
-    OutputView.printBenefitPrice(this.#aBenefitList.getTotalBenefit());
-
-    OutputView.printExpectedPurchase(
-      this.#anOrder.getTotalPrice() -
-        this.#aBenefitList.getTotalDiscountPrice(),
-    );
-    OutputView.printEventBadge(this.#aBenefitList.getBadge());
+  #runBenefitController() {
+    new BenefitController(this.#anOrder, this.#aVisitDate).print();
   }
 }
 
