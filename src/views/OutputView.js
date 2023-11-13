@@ -1,6 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
 import Messages from '../constants/Messages.js';
-import BenefitList from '../services/BenefitList.js';
 
 const Utils = {
   printDiscountBenefit(discounts) {
@@ -42,14 +41,14 @@ const OutputView = {
     Console.print(isGiven ? Messages.PRESENT_EVENT_PRIZE : '없음');
   },
 
-  printBenefitList(discounts, isGiven) {
+  printBenefitList(discounts, isPresentGiven, isZeroBenefit) {
     Console.print(Messages.HEADERS.benefitList);
-    if (new BenefitList(discounts, isGiven).getTotalBenefit() === 0) {
+    if (isZeroBenefit) {
       Console.print('없음');
       return;
     }
     Utils.printDiscountBenefit(discounts);
-    Utils.printPresentBenefitIf(isGiven);
+    Utils.printPresentBenefitIf(isPresentGiven);
   },
 
   printBenefitPrice(benefitPrice) {

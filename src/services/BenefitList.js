@@ -26,8 +26,14 @@ class BenefitList {
     return '없음';
   }
 
+  isZeroBenefit() {
+    return this.getTotalBenefit() === 0;
+  }
+
   #calcGivenPrice() {
-    return this.#isGivenPresent ? Conditions.MENUS_PRICES.beverages.샴페인 : 0;
+    return this.#isGivenPresent
+      ? Conditions.MENUS_PRICES.beverages['샴페인']
+      : 0;
   }
 
   #calcDiscountPrice() {
