@@ -13,8 +13,8 @@ class App {
     OutputView.printGreeting();
 
     // 할인 전
-    const aVisitDate = await this.readVisitDate();
-    const anOrder = await this.readOrder();
+    const aVisitDate = await App.#readVisitDate();
+    const anOrder = await App.#readOrder();
     OutputView.printMenu(anOrder.getOrder());
     OutputView.printPriceBeforeDiscount(anOrder.getTotalPrice());
 
@@ -36,15 +36,15 @@ class App {
     OutputView.printSplitter();
   }
 
-  async readVisitDate() {
-    return this.robustInput(InputView.readDate, VisitDate);
+  static async #readVisitDate() {
+    return App.#robustInput(InputView.readDate, VisitDate);
   }
 
-  async readOrder() {
-    return this.robustInput(InputView.readOrder, Order);
+  static async #readOrder() {
+    return App.#robustInput(InputView.readOrder, Order);
   }
 
-  async robustInput(readline, Object) {
+  static async #robustInput(readline, Object) {
     while (true) {
       try {
         const input = await readline();

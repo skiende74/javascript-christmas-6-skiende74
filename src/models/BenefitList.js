@@ -1,6 +1,8 @@
 import Conditions from '../constants/Conditions.js';
+
 class BenefitList {
   #discounts;
+
   #isGivenPresent;
 
   constructor(discounts, isGivenPresent) {

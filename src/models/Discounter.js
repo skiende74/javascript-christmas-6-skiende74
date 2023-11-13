@@ -2,7 +2,9 @@ import Conditions from '../constants/Conditions.js';
 
 class Discounter {
   #discounts = { dday: 0, weekday: 0, weekend: 0, special: 0 };
+
   #aDate;
+
   #anOrder;
 
   constructor(aDate, anOrder) {

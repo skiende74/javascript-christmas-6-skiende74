@@ -2,6 +2,7 @@ import Conditions from '../constants/Conditions.js';
 
 class PresentEvent {
   #totalPrice;
+  
   constructor(totalPrice) {
     this.#totalPrice = totalPrice;
   }

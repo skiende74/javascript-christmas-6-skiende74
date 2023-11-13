@@ -1,12 +1,11 @@
 import { Console } from '@woowacourse/mission-utils';
 import Messages from '../constants/Messages.js';
-import Conditions from '../constants/Conditions.js';
 import BenefitList from '../models/BenefitList.js';
 
 const Utils = {
   printDiscountBenefit(discounts) {
     Object.entries(discounts)
-      .filter(([menu, discount]) => discount > 0)
+      .filter(([, discount]) => discount > 0)
       .forEach(([menu, discount]) => {
         Console.print(
           `${Messages.DISCOUNTS[menu]}: -${this.format(discount)}원`,

@@ -6,29 +6,7 @@ class Order {
 
   constructor(orderStr) {
     Order.#validate(orderStr);
-    this.#order = this.#parse(orderStr);
-  }
-
-  static #validate(orderStr) {
-    new OrderValidator(orderStr).validate();
-  }
-
-  #parse(orderStr) {
-    return Object.fromEntries(
-      orderStr.split(',').map((o) => this.#parseOneOrder(o)),
-    );
-  }
-
-  #parseOneOrder(orderStr) {
-    const [menu, count] = orderStr.split('-');
-    return [menu, Number(count)];
-  }
-
-  #getMenuPrices() {
-    return Object.values(Conditions.MENUS_PRICES).reduce(
-      (acc, menuPrices) => ({ ...acc, ...menuPrices }),
-      {},
-    );
+    this.#order = Order.#parse(orderStr);
   }
 
   getTotalPrice() {
@@ -36,7 +14,7 @@ class Order {
 
     return sum(
       Object.entries(this.#order).map(
-        ([menu, count]) => this.#getMenuPrices()[menu] * count,
+        ([menu, count]) => Order.#getMenuPrices()[menu] * count,
       ),
     );
   }
@@ -52,11 +30,34 @@ class Order {
       0,
     );
   }
+
   getNumberOfMain() {
     const main = Object.keys(Conditions.MENUS_PRICES.main);
     return Object.entries(this.#order).reduce(
       (acc, [menu, count]) => acc + main.includes(menu) * count,
       0,
+    );
+  }
+
+  static #validate(orderStr) {
+    new OrderValidator(orderStr).validate();
+  }
+
+  static #parse(orderStr) {
+    return Object.fromEntries(
+      orderStr.split(',').map((o) => Order.#parseOneOrderStr(o)),
+    );
+  }
+
+  static #parseOneOrderStr(orderStr) {
+    const [menu, count] = orderStr.split('-');
+    return [menu, Number(count)];
+  }
+
+  static #getMenuPrices() {
+    return Object.values(Conditions.MENUS_PRICES).reduce(
+      (acc, menuPrices) => ({ ...acc, ...menuPrices }),
+      {},
     );
   }
 }
