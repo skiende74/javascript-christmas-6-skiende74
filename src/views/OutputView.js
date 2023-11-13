@@ -41,7 +41,7 @@ const OutputView = {
     Console.print(isGiven ? Messages.PRESENT_EVENT_PRIZE : '없음');
   },
 
-  printBenfitList(discounts, isGiven) {
+  printBenefitList(discounts, isGiven) {
     Console.print(Messages.HEADERS.BENEFIT_LIST);
     if (new BenefitList(discounts, isGiven).getTotalBenefit() === 0) {
       Console.print('없음');
@@ -51,7 +51,7 @@ const OutputView = {
     Utils.printPresentBenefitIf(isGiven);
   },
 
-  printBenfitPrice(benefitPrice) {
+  printBenefitPrice(benefitPrice) {
     Console.print(Messages.HEADERS.TOTAL_BENEFIT_PRICE);
     Console.print(
       `${benefitPrice > 0 ? `-${Utils.format(benefitPrice)}` : 0}원`,

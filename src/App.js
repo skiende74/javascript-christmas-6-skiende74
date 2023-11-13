@@ -8,32 +8,61 @@ import PresentEvent from './models/PresentEvent.js';
 import BenefitList from './models/BenefitList.js';
 
 class App {
+  #aVisitDate;
+
+  #anOrder;
+
+  #discounts;
+
+  #isPresentGiven;
+
+  #aBenefitList;
+
   async run() {
     OutputView.printSplitter();
     OutputView.printGreeting();
 
-    // 할인 전
-    const aVisitDate = await App.#readVisitDate();
-    const anOrder = await App.#readOrder();
-    OutputView.printMenu(anOrder.getOrder());
-    OutputView.printPriceBeforeDiscount(anOrder.getTotalPrice());
+    await this.#readInputs();
+    this.#calculate();
 
-    // 혜택내역
-    const discounts = new Discounter(aVisitDate, anOrder).getDiscounts();
-    const isPresentGiven = new PresentEvent(anOrder.getTotalPrice()).isGiven();
-    OutputView.printPresentEvent(isPresentGiven);
-    OutputView.printBenfitList(discounts, isPresentGiven);
+    this.#printOrderDetails();
+    this.#printBenefitDetails();
 
-    // 총혜택
-    const aBenefitList = new BenefitList(discounts, isPresentGiven);
-    OutputView.printBenfitPrice(aBenefitList.getTotalBenefit());
-
-    // 이후
-    OutputView.printExpectedPurchase(
-      anOrder.getTotalPrice() - aBenefitList.getTotalDiscountPrice(),
-    );
-    OutputView.printEventBadge(aBenefitList.getBadge());
     OutputView.printSplitter();
+  }
+
+  async #readInputs() {
+    this.#aVisitDate = await App.#readVisitDate();
+    this.#anOrder = await App.#readOrder();
+  }
+
+  #calculate() {
+    this.#discounts = new Discounter(
+      this.#aVisitDate,
+      this.#anOrder,
+    ).getDiscounts();
+    this.#isPresentGiven = new PresentEvent(
+      this.#anOrder.getTotalPrice(),
+    ).isGiven();
+    this.#aBenefitList = new BenefitList(this.#discounts, this.#isPresentGiven);
+  }
+
+  #printOrderDetails() {
+    OutputView.printMenu(this.#anOrder.getOrder());
+    OutputView.printPriceBeforeDiscount(this.#anOrder.getTotalPrice());
+  }
+
+  #printBenefitDetails() {
+    OutputView.printPresentEvent(this.#isPresentGiven);
+    OutputView.printBenefitList(this.#discounts, this.#isPresentGiven);
+
+    OutputView.printBenefitPrice(this.#aBenefitList.getTotalBenefit());
+
+    OutputView.printExpectedPurchase(
+      this.#anOrder.getTotalPrice() -
+        this.#aBenefitList.getTotalDiscountPrice(),
+    );
+    OutputView.printEventBadge(this.#aBenefitList.getBadge());
   }
 
   static async #readVisitDate() {
