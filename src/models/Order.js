@@ -1,5 +1,5 @@
-import Validation from '../Validation.js';
 import Conditions from '../constants/Conditions.js';
+import OrderValidator from './OrderValidator.js';
 
 class Order {
   #order;
@@ -9,13 +9,8 @@ class Order {
     this.#order = this.#parse(orderStr);
   }
 
-  static #validate(order) {
-    Validation.validateOrderFormat(order);
-    Validation.validateOrderMustInMenu(order);
-    Validation.validateOrderCountOneOrMore(order);
-    Validation.validateOrderNoRedundant(order);
-    Validation.validateOrderNoOnlyBeverage(order);
-    Validation.validateOrderNotOverTwenty(order);
+  static #validate(orderStr) {
+    new OrderValidator(orderStr).validate();
   }
 
   #parse(orderStr) {
