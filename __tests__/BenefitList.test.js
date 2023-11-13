@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import BenefitList from '../src/models/BenefitList';
 import Conditions from '../src/constants/Conditions';
 
@@ -25,10 +26,7 @@ describe('혜택 내역', () => {
       4323,
     ],
   ])('총 혜택 금액', (discounts, isGiven, benefit) => {
-    () =>
-      expect(new BenefitList(discounts, isGiven).getTotalBenefit()).teBe(
-        benefit,
-      );
+    expect(new BenefitList(discounts, isGiven).getTotalBenefit()).toBe(benefit);
   });
 
   test.each([
@@ -63,6 +61,6 @@ describe('혜택 내역', () => {
       '산타',
     ],
   ])('배지 부여', (discounts, isGiven, badge) => {
-    () => expect(new BenefitList(discounts, isGiven).getBadge()).teBe(badge);
+    expect(new BenefitList(discounts, isGiven).getBadge()).toBe(badge);
   });
 });

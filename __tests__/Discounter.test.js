@@ -9,6 +9,7 @@ describe('할인', () => {
     ['25', '티본스테이크-1', 3400],
     ['26', '티본스테이크-1', 0], // 25일 초과
   ])('D-Day 할인', (date, orderStr, expectedDiscount) => {
+    // given
     const aDiscounter = new Discounter(
       new VisitDate(date),
       new Order(orderStr),
@@ -25,6 +26,7 @@ describe('할인', () => {
     ['2', '초코케이크-1', 0], // 평일아님
     ['2', '티본스테이크-1', 0], // 디저트아님
   ])('평일 할인', (date, orderStr, expectedDiscount) => {
+    // given
     const aDiscounter = new Discounter(
       new VisitDate(date),
       new Order(orderStr),
@@ -41,6 +43,7 @@ describe('할인', () => {
     ['3', '티본스테이크-1', 0], // 주말아님
     ['1', '초코케이크-1', 0], // 메인메뉴아님
   ])('주말 할인', (date, orderStr, expectedDiscount) => {
+    // given
     const aDiscounter = new Discounter(
       new VisitDate(date),
       new Order(orderStr),
@@ -57,6 +60,7 @@ describe('할인', () => {
     ['25', '티본스테이크-1', 1000],
     ['23', '티본스테이크-1', 0],
   ])('특별 할인', (date, orderStr, expectedDiscount) => {
+    // given
     const aDiscounter = new Discounter(
       new VisitDate(date),
       new Order(orderStr),

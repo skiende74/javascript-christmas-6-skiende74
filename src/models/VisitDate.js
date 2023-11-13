@@ -7,7 +7,6 @@ class VisitDate {
   constructor(dateStr) {
     this.#validate(dateStr);
     this.#date = Number(dateStr);
-    //this.#validate();
   }
 
   isDdayApplicable() {
