@@ -1,6 +1,6 @@
 import Discounter from '../src/services/Discounter';
-import VisitDate from '../src/models/VisitDate';
-import Order from '../src/models/Order';
+import VisitDate from '../src/domains/VisitDate';
+import Order from '../src/domains/Order';
 
 // eslint-disable-next-line max-lines-per-function
 describe('할인', () => {

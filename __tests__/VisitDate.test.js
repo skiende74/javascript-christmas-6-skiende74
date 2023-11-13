@@ -1,4 +1,4 @@
-import VisitDate from '../src/models/VisitDate';
+import VisitDate from '../src/domains/VisitDate';
 
 describe('방문일', () => {
   test.each(['1', '5', '20', '30', '31'])('올바른 입력', (visitDate) => {

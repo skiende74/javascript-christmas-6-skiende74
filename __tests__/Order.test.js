@@ -1,4 +1,4 @@
-import Order from '../src/models/Order';
+import Order from '../src/domains/Order';
 
 // eslint-disable-next-line max-lines-per-function
 describe('주문', () => {
