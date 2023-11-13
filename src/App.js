@@ -20,7 +20,7 @@ class App {
 
   async run() {
     OutputView.printSplitter();
-    OutputView.printGreeting();
+    OutputView.printGreetings();
 
     await this.#readInputs();
     this.#calculate();
@@ -34,6 +34,25 @@ class App {
   async #readInputs() {
     this.#aVisitDate = await App.#readVisitDate();
     this.#anOrder = await App.#readOrder();
+  }
+
+  static async #readVisitDate() {
+    return App.#robustInput(InputView.readDate, VisitDate);
+  }
+
+  static async #readOrder() {
+    return App.#robustInput(InputView.readOrder, Order);
+  }
+
+  static async #robustInput(readline, Object) {
+    while (true) {
+      try {
+        const input = await readline();
+        return new Object(input);
+      } catch (e) {
+        OutputView.print(e.message);
+      }
+    }
   }
 
   #calculate() {
@@ -63,25 +82,6 @@ class App {
         this.#aBenefitList.getTotalDiscountPrice(),
     );
     OutputView.printEventBadge(this.#aBenefitList.getBadge());
-  }
-
-  static async #readVisitDate() {
-    return App.#robustInput(InputView.readDate, VisitDate);
-  }
-
-  static async #readOrder() {
-    return App.#robustInput(InputView.readOrder, Order);
-  }
-
-  static async #robustInput(readline, Object) {
-    while (true) {
-      try {
-        const input = await readline();
-        return new Object(input);
-      } catch (e) {
-        OutputView.print(e.message);
-      }
-    }
   }
 }
 

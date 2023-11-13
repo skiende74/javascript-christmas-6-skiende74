@@ -18,6 +18,7 @@ const Utils = {
       Console.print(`${Messages.PRESENT_EVENT}: -${this.format(25000)}원`);
     }
   },
+
   format(discount) {
     return new Intl.NumberFormat('ko-KR').format(discount);
   },
@@ -76,7 +77,7 @@ const OutputView = {
     Console.print(Messages.SPLITTER);
   },
 
-  printGreeting() {
+  printGreetings() {
     Console.print(Messages.GREETING);
   },
 };

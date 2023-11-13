@@ -5,7 +5,7 @@ class VisitDate {
   #date;
 
   constructor(dateStr) {
-    this.#validate(dateStr);
+    VisitDate.#validate(dateStr);
     this.#date = Number(dateStr);
   }
 
@@ -33,7 +33,7 @@ class VisitDate {
     return new Date(`2023-12-${this.#date}`).getDay();
   }
 
-  #validate(dateStr) {
+  static #validate(dateStr) {
     new VisitDateValidator(dateStr).validate();
   }
 }

@@ -1,4 +1,5 @@
 import Errors from '../constants/Errors.js';
+
 class VisitDateValidator {
   #date;
 
