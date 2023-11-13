@@ -2,12 +2,6 @@ import Errors from './constants/Errors.js';
 import Conditions from './constants/Conditions.js';
 
 const Validation = {
-  validateVisitDate(visitDate) {
-    const date = Number(visitDate);
-    if (!(Number.isInteger(date) && date <= 31 && date >= 1))
-      throw new Error(Errors.VISIT_DATE_RANGE);
-  },
-
   validateOrderFormat(orderStr) {
     if (
       !orderStr
