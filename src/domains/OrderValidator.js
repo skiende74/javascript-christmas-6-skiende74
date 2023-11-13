@@ -26,7 +26,7 @@ class OrderValidator {
   #isValidOrderFormat(orderStr) {
     return (
       this.#count(orderStr, '-') === 1 &&
-      !this.#isInteger(orderStr.split('-')[0]) &&
+      this.#isNonNumeric(orderStr.split('-')[0]) &&
       this.#isInteger(orderStr.split('-')[1])
     );
   }
@@ -68,6 +68,10 @@ class OrderValidator {
 
   #isInteger(str) {
     return Number.isInteger(Number(str));
+  }
+
+  #isNonNumeric(str) {
+    return Number.isNaN(Number(str));
   }
 }
 
