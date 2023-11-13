@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import Messages from '../constants/Messages.js';
-import BenefitList from '../models/BenefitList.js';
+import BenefitList from '../services/BenefitList.js';
 
 const Utils = {
   printDiscountBenefit(discounts) {

@@ -1,4 +1,4 @@
-import PresentEvent from '../src/models/PresentEvent';
+import PresentEvent from '../src/services/PresentEvent';
 
 describe('증정 이벤트', () => {
   test.each([10000, 10001, 9000000])('증정', (totalPrice) => {

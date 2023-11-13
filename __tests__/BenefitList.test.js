@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import BenefitList from '../src/models/BenefitList';
+import BenefitList from '../src/services/BenefitList';
 import Conditions from '../src/constants/Conditions';
 
 const givenPrice = Conditions.MENUS_PRICES.beverages['샴페인'];

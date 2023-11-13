@@ -1,4 +1,4 @@
-import Discounter from '../src/models/Discounter';
+import Discounter from '../src/services/Discounter';
 import VisitDate from '../src/models/VisitDate';
 import Order from '../src/models/Order';
 

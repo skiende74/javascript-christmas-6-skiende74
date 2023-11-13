@@ -3,9 +3,9 @@ import VisitDate from './models/VisitDate.js';
 import Order from './models/Order.js';
 import InputView from './views/InputView.js';
 import OutputView from './views/OutputView.js';
-import Discounter from './models/Discounter.js';
-import PresentEvent from './models/PresentEvent.js';
-import BenefitList from './models/BenefitList.js';
+import Discounter from './services/Discounter.js';
+import PresentEvent from './services/PresentEvent.js';
+import BenefitList from './services/BenefitList.js';
 
 class App {
   #aVisitDate;
