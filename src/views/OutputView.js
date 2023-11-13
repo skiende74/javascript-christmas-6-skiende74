@@ -26,24 +26,24 @@ const Utils = {
 
 const OutputView = {
   printMenu(order) {
-    Console.print(Messages.HEADERS.ORDER_MENU);
+    Console.print(Messages.HEADERS.orderMenu);
     Object.entries(order).map(([menu, count]) =>
       Console.print(`${menu} ${count}개`),
     );
   },
 
   printPriceBeforeDiscount(price) {
-    Console.print(Messages.HEADERS.TOTAL_PRICE_BEFORE_DISCOUNT);
+    Console.print(Messages.HEADERS.totalPriceBeforeDiscount);
     Console.print(`${Utils.format(price)}원`);
   },
 
   printPresentEvent(isGiven) {
-    Console.print(Messages.HEADERS.PRESENT_EVENT);
+    Console.print(Messages.HEADERS.presentEvent);
     Console.print(isGiven ? Messages.PRESENT_EVENT_PRIZE : '없음');
   },
 
   printBenefitList(discounts, isGiven) {
-    Console.print(Messages.HEADERS.BENEFIT_LIST);
+    Console.print(Messages.HEADERS.benefitList);
     if (new BenefitList(discounts, isGiven).getTotalBenefit() === 0) {
       Console.print('없음');
       return;
@@ -53,19 +53,19 @@ const OutputView = {
   },
 
   printBenefitPrice(benefitPrice) {
-    Console.print(Messages.HEADERS.TOTAL_BENEFIT_PRICE);
+    Console.print(Messages.HEADERS.totalBenefitPrice);
     Console.print(
       `${benefitPrice > 0 ? `-${Utils.format(benefitPrice)}` : 0}원`,
     );
   },
 
   printExpectedPurchase(price) {
-    Console.print(Messages.HEADERS.EXPECTED_PURCHASE_AFTER_DISCOUNT);
+    Console.print(Messages.HEADERS.expectedPurchaseAfterDiscount);
     Console.print(`${Utils.format(price)}원`);
   },
 
   printEventBadge(badge) {
-    Console.print(Messages.HEADERS.EVENT_BADGE);
+    Console.print(Messages.HEADERS.eventBadge);
     Console.print(badge);
   },
 
