@@ -12,15 +12,12 @@ class MainController {
   #anOrder;
 
   async run() {
-    OutputView.printSplitter();
     OutputView.printGreetings();
 
     await this.#readInputs();
 
     this.#runOrderController();
     this.#runBenefitController();
-
-    OutputView.printSplitter();
   }
 
   async #readInputs() {
