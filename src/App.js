@@ -45,6 +45,7 @@ class App {
   }
 
   static async #robustInput(readline, Object) {
+    // eslint-disable-next-line no-constant-condition
     while (true) {
       try {
         const input = await readline();
