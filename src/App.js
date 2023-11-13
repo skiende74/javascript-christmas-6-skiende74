@@ -6,6 +6,7 @@ import OutputView from './views/OutputView.js';
 import Discounter from './services/Discounter.js';
 import PresentEvent from './services/PresentEvent.js';
 import BenefitList from './services/BenefitList.js';
+import OrderController from './controller/OrderController.js';
 
 class App {
   #aVisitDate;
@@ -68,8 +69,9 @@ class App {
   }
 
   #printOrderDetails() {
-    OutputView.printMenu(this.#anOrder.getOrder());
-    OutputView.printPriceBeforeDiscount(this.#anOrder.getTotalPrice());
+    new OrderController(this.#anOrder).print();
+    // OutputView.printMenu(this.#anOrder.getOrder());
+    // OutputView.printPriceBeforeDiscount(this.#anOrder.getTotalPrice());
   }
 
   #printBenefitDetails() {
