@@ -73,10 +73,6 @@ const OutputView = {
     Console.print(message);
   },
 
-  printSplitter() {
-    Console.print(Messages.SPLITTER);
-  },
-
   printGreetings() {
     Console.print(Messages.GREETING);
   },
