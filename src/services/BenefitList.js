@@ -24,7 +24,7 @@ class BenefitList {
 
   getPresentPrice() {
     return this.#isGivenPresent
-      ? Conditions.MENUS_PRICES.beverages['샴페인']
+      ? Conditions.MENUS_PRICES.beverages[Conditions.PRESENT_EVENT_MENU]
       : 0;
   }
 
