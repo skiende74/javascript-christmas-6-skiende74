@@ -2,7 +2,7 @@ import { Console } from '@woowacourse/mission-utils';
 import Messages from '../constants/Messages.js';
 
 const Utils = {
-  printDiscountBenefit(discounts) {
+  printDiscountPrice(discounts) {
     Object.entries(discounts)
       .filter(([, discount]) => discount > 0)
       .forEach(([menu, discount]) => {
@@ -12,9 +12,11 @@ const Utils = {
       });
   },
 
-  printPresentBenefitIf(isGiven) {
-    if (isGiven) {
-      Console.print(`${Messages.PRESENT_EVENT}: -${this.format(25000)}원`);
+  printPresentPriceIfExist(presentPrice) {
+    if (presentPrice > 0) {
+      Console.print(
+        `${Messages.PRESENT_EVENT}: -${this.format(presentPrice)}원`,
+      );
     }
   },
 
@@ -41,14 +43,14 @@ const OutputView = {
     Console.print(isGiven ? Messages.PRESENT_EVENT_PRIZE : '없음');
   },
 
-  printBenefitList(discounts, isPresentGiven, isZeroBenefit) {
+  printBenefitList(discounts, presentPrice, isZeroBenefit) {
     Console.print(Messages.HEADERS.benefitList);
     if (isZeroBenefit) {
       Console.print('없음');
       return;
     }
-    Utils.printDiscountBenefit(discounts);
-    Utils.printPresentBenefitIf(isPresentGiven);
+    Utils.printDiscountPrice(discounts);
+    Utils.printPresentPriceIfExist(presentPrice);
   },
 
   printBenefitPrice(benefitPrice) {
