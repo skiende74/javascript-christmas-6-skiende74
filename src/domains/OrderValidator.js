@@ -23,14 +23,6 @@ class OrderValidator {
       throw new Error(Errors.ORDER_FORMAT);
   }
 
-  #isValidOrderFormat(orderStr) {
-    return (
-      this.#count(orderStr, '-') === 1 &&
-      this.#isNonNumeric(orderStr.split('-')[0]) &&
-      this.#isInteger(orderStr.split('-')[1])
-    );
-  }
-
   #validateOrderMustInMenu() {
     const menus = Object.values(Conditions.MENUS_PRICES).flatMap((el) =>
       Object.keys(el),
@@ -60,6 +52,14 @@ class OrderValidator {
     const sum = (arr) => arr.reduce((acc, value) => acc + value, 0);
     if (sum(this.#orderStrs.map((o) => Number(o.split('-')[1]))) > 20)
       throw new Error(Errors.ORDER_FORMAT);
+  }
+
+  #isValidOrderFormat(orderStr) {
+    return (
+      this.#count(orderStr, '-') === 1 &&
+      this.#isNonNumeric(orderStr.split('-')[0]) &&
+      this.#isInteger(orderStr.split('-')[1])
+    );
   }
 
   #count(string, pattern) {
