@@ -11,11 +11,7 @@ class BenefitList {
   }
 
   getTotalBenefit() {
-    return this.#calcDiscountPrice() + this.#calcGivenPrice();
-  }
-
-  getTotalDiscountPrice() {
-    return this.#calcDiscountPrice();
+    return this.getDiscountPrice() + this.getPresentPrice();
   }
 
   getBadge() {
@@ -26,17 +22,17 @@ class BenefitList {
     return '없음';
   }
 
-  isZeroBenefit() {
-    return this.getTotalBenefit() === 0;
-  }
-
-  #calcGivenPrice() {
+  getPresentPrice() {
     return this.#isGivenPresent
       ? Conditions.MENUS_PRICES.beverages['샴페인']
       : 0;
   }
 
-  #calcDiscountPrice() {
+  isZeroBenefit() {
+    return this.getTotalBenefit() === 0;
+  }
+
+  getDiscountPrice() {
     const sum = (arr) => arr.reduce((acc, value) => acc + value, 0);
 
     return sum(Object.values(this.#discounts));

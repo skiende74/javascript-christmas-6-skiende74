@@ -32,8 +32,7 @@ class BenefitController {
     OutputView.printBenefitPrice(this.#aBenefitList.getTotalBenefit());
 
     OutputView.printExpectedPurchase(
-      this.#anOrder.getTotalPrice() -
-        this.#aBenefitList.getTotalDiscountPrice(),
+      this.#anOrder.getTotalPrice() - this.#aBenefitList.getDiscountPrice(),
     );
     OutputView.printEventBadge(this.#aBenefitList.getBadge());
   }

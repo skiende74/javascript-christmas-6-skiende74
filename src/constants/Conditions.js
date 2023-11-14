@@ -21,6 +21,9 @@ const Conditions = Object.freeze({
   SPECIAL_DATES: [3, 10, 17, 24, 25, 31],
 
   GIVEN_EVENT_MONEY_THRESHOLD: 10000,
+
+  PRESENT_EVENT_MENU : '샴페인',
+  
 });
 
 export default Conditions;
