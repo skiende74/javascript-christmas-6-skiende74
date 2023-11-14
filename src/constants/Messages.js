@@ -23,6 +23,8 @@ const Messages = Object.freeze({
     special: '특별 할인',
   },
   PRESENT_EVENT: '증정 이벤트',
+  EMPTY: '없음',
+  CURRENCY: '원',
 });
 
 export default Messages;

@@ -1,13 +1,13 @@
 import { Console } from '@woowacourse/mission-utils';
 import Messages from '../constants/Messages.js';
 
-const Utils = {
+const Private = {
   printDiscountPrice(discounts) {
     Object.entries(discounts)
       .filter(([, discount]) => discount > 0)
       .forEach(([menu, discount]) => {
         Console.print(
-          `${Messages.DISCOUNTS[menu]}: -${this.format(discount)}원`,
+          `${Messages.DISCOUNTS[menu]}: -${this.moneyFormat(discount)}`,
         );
       });
   },
@@ -15,9 +15,13 @@ const Utils = {
   printPresentPriceIfExist(presentPrice) {
     if (presentPrice > 0) {
       Console.print(
-        `${Messages.PRESENT_EVENT}: -${this.format(presentPrice)}원`,
+        `${Messages.PRESENT_EVENT}: -${this.moneyFormat(presentPrice)}`,
       );
     }
+  },
+
+  moneyFormat(money) {
+    return `${this.format(money) + Messages.CURRENCY}`;
   },
 
   format(discount) {
@@ -35,34 +39,32 @@ const OutputView = {
 
   printPriceBeforeDiscount(price) {
     Console.print(Messages.HEADERS.totalPriceBeforeDiscount);
-    Console.print(`${Utils.format(price)}원`);
+    Console.print(Private.moneyFormat(price));
   },
 
   printPresentEvent(isGiven) {
     Console.print(Messages.HEADERS.presentEvent);
-    Console.print(isGiven ? Messages.PRESENT_EVENT_PRIZE : '없음');
+    Console.print(isGiven ? Messages.PRESENT_EVENT_PRIZE : Messages.EMPTY);
   },
 
   printBenefitList(aBenefitList) {
     Console.print(Messages.HEADERS.benefitList);
     if (aBenefitList.isZeroBenefit()) {
-      Console.print('없음');
+      Console.print(Messages.EMPTY);
       return;
     }
-    Utils.printDiscountPrice(aBenefitList.getDiscounts());
-    Utils.printPresentPriceIfExist(aBenefitList.getPresentPrice());
+    Private.printDiscountPrice(aBenefitList.getDiscounts());
+    Private.printPresentPriceIfExist(aBenefitList.getPresentPrice());
   },
 
   printBenefitPrice(benefitPrice) {
     Console.print(Messages.HEADERS.totalBenefitPrice);
-    Console.print(
-      `${benefitPrice > 0 ? `-${Utils.format(benefitPrice)}` : 0}원`,
-    );
+    Console.print(Private.moneyFormat(benefitPrice > 0 ? -benefitPrice : 0));
   },
 
   printExpectedPurchase(price) {
     Console.print(Messages.HEADERS.expectedPurchaseAfterDiscount);
-    Console.print(`${Utils.format(price)}원`);
+    Console.print(Private.moneyFormat(price));
   },
 
   printEventBadge(badge) {
