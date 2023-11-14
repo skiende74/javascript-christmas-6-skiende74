@@ -1,4 +1,3 @@
-/* eslint-disable no-await-in-loop */
 import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
 import OrderController from './OrderController.js';
