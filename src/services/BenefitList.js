@@ -16,10 +16,11 @@ class BenefitList {
 
   getBadge() {
     const total = this.getTotalBenefit();
-    if (total >= 20000) return '산타';
-    if (total >= 10000) return '트리';
-    if (total >= 5000) return '별';
-    return '없음';
+    return Conditions.EVENT_BADGES_THRESHOLDS.reduce(
+      (badgeResult, [badge, threshold]) =>
+        total >= threshold ? badge : badgeResult,
+      '',
+    );
   }
 
   getPresentPrice() {

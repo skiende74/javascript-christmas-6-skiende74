@@ -22,8 +22,15 @@ const Conditions = Object.freeze({
 
   GIVEN_EVENT_MONEY_THRESHOLD: 10000,
 
-  PRESENT_EVENT_MENU : '샴페인',
-  
+  PRESENT_EVENT_MENU: '샴페인',
+
+  EVENT_BADGES_THRESHOLDS: [
+    // 오름차순
+    ['없음', 0],
+    ['별', 5000],
+    ['트리', 10000],
+    ['산타', 20000],
+  ],
 });
 
 export default Conditions;
