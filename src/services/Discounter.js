@@ -20,11 +20,6 @@ class Discounter {
     return this.#discounts;
   }
 
-  getTotalDiscount() {
-    const sum = (arr) => arr.reduce((acc, value) => acc + value, 0);
-    return sum(Object.values(this.getDiscounts()));
-  }
-
   #getDdayDiscount() {
     if (!this.#aDate.isDdayApplicable()) return 0;
     return (this.#aDate.getDay() + 9) * Conditions.DISCOUNTS.dday;
