@@ -20,6 +20,14 @@ class MainController {
     this.#runBenefitController();
   }
 
+  #runOrderController() {
+    new OrderController(this.#anOrder).print();
+  }
+
+  #runBenefitController() {
+    new BenefitController(this.#anOrder, this.#aVisitDate).print();
+  }
+
   async #readInputs() {
     this.#aVisitDate = await MainController.#readVisitDate();
     this.#anOrder = await MainController.#readOrder();
@@ -43,14 +51,6 @@ class MainController {
         OutputView.print(e.message);
       }
     }
-  }
-
-  #runOrderController() {
-    new OrderController(this.#anOrder).print();
-  }
-
-  #runBenefitController() {
-    new BenefitController(this.#anOrder, this.#aVisitDate).print();
   }
 }
 
