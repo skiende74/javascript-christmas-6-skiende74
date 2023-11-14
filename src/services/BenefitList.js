@@ -37,6 +37,10 @@ class BenefitList {
 
     return sum(Object.values(this.#discounts));
   }
+
+  getDiscounts() {
+    return this.#discounts;
+  }
 }
 
 export default BenefitList;

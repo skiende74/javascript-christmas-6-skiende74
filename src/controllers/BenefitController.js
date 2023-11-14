@@ -23,11 +23,7 @@ class BenefitController {
 
   print() {
     OutputView.printPresentEvent(this.#isPresentGiven);
-    OutputView.printBenefitList(
-      this.#discounts,
-      this.#aBenefitList.getPresentPrice(),
-      this.#aBenefitList.isZeroBenefit(),
-    );
+    OutputView.printBenefitList(this.#aBenefitList);
 
     OutputView.printBenefitPrice(this.#aBenefitList.getTotalBenefit());
 

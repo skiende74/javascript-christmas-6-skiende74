@@ -43,14 +43,14 @@ const OutputView = {
     Console.print(isGiven ? Messages.PRESENT_EVENT_PRIZE : '없음');
   },
 
-  printBenefitList(discounts, presentPrice, isZeroBenefit) {
+  printBenefitList(aBenefitList) {
     Console.print(Messages.HEADERS.benefitList);
-    if (isZeroBenefit) {
+    if (aBenefitList.isZeroBenefit()) {
       Console.print('없음');
       return;
     }
-    Utils.printDiscountPrice(discounts);
-    Utils.printPresentPriceIfExist(presentPrice);
+    Utils.printDiscountPrice(aBenefitList.getDiscounts());
+    Utils.printPresentPriceIfExist(aBenefitList.getPresentPrice());
   },
 
   printBenefitPrice(benefitPrice) {
